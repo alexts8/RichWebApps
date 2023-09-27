@@ -18,6 +18,7 @@
     margin: 0.5em;
 }
 
+
 .box-two {
   
     padding: 0.1em;
@@ -26,5 +27,15 @@
     
  /* Do not forget the behaviour known as margin collapsing. When two elements have two different margins, they will be separated by the highest one.  */
     margin: 0em;
+
+}
+
+.box-three {
+  
+    padding: 0.1em;
+    background-color: #008000;
+    border: 0 solid #008000;
+    
+    margin: 0.5em;
 
 }
