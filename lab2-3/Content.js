@@ -25,12 +25,4 @@ for (let i = 0; i < p.length; i++){
     p[i].innerText = "This website is now about cats.";
 }
 
-function openTab(){
-    
-    var newTab = browser.tabs.create({
-        url:'https://twitter.com/abhilekh_gautam',
-        active:true
-    })
-}
 
-browser.browserAction.onClicked.addListener(openTab)

@@ -9,6 +9,11 @@
         }
     ],
 
+
+    "background":{
+        "scripts":["newtab.js"]
+    },
+
     "permissions":[
         "tabs"
     ]
