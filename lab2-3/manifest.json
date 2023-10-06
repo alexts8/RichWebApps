@@ -7,15 +7,6 @@
         "matches": ["<all_urls>"],
         "js": ["Content.js"]
         }
-    ],
-
-
-    "background":{
-        "scripts":["newtab.js"]
-    },
-
-    "permissions":[
-        "tabs"
     ]
-    
+
 }
