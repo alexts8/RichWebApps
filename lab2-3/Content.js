@@ -50,49 +50,49 @@ if(confirm("would you like to make this website interesting?"))
 }
 else
 {
-//reverse through array of images
-//getting random image from the array we created before (we use math.floor and math.random to grab a random index in the array)
-const imgs = document.getElementsByTagName("img");
-for(let i = 0; i < imgs.length; i++) {
-    const randomImg = Math.floor(Math.random() * rainbowImages.length)
-    imgs[i].src = rainbowImages[randomImg]
-}
+    //reverse through array of images
+    //getting random image from the array we created before (we use math.floor and math.random to grab a random index in the array)
+    const imgs = document.getElementsByTagName("img");
+    for(let i = 0; i < imgs.length; i++) {
+        const randomImg = Math.floor(Math.random() * boringImages.length)
+        imgs[i].src = boringImages[randomImg]
+    }
 
-//do the same for h1 elements
-const headers = document.getElementsByTagName("h1");
-for (let i = 0; i < headers.length; i++){
-    headers[i].innerText = "Boooo Boring";
-    headers[i].style.color = "Black"
-}
+    //do the same for h1 elements
+    const headers = document.getElementsByTagName("h1");
+    for (let i = 0; i < headers.length; i++){
+        headers[i].innerText = "Boooo Boring";
+        headers[i].style.color = "Black"
+    }
 
-const headers2 = document.getElementsByTagName("h2");
-for (let i = 0; i < headers2.length; i++){
-    headers2[i].innerText = "Boring Website";
-    headers2[i].style.color = "Black"
-}
+    const headers2 = document.getElementsByTagName("h2");
+    for (let i = 0; i < headers2.length; i++){
+        headers2[i].innerText = "Boring Website";
+        headers2[i].style.color = "Black"
+    }
 
-const headers3 = document.getElementsByTagName("h3");
-for (let i = 0; i < headers3.length; i++){
-    headers3[i].innerText = "Boring Website";
-    headers3[i].style.color = "Black"
-}
+    const headers3 = document.getElementsByTagName("h3");
+    for (let i = 0; i < headers3.length; i++){
+        headers3[i].innerText = "Boring Website";
+        headers3[i].style.color = "Black"
+    }
 
-//do the same for p elements
-const p = document.getElementsByTagName("p");
-for (let i = 0; i < p.length; i++){
-    p[i].innerText = "Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla";
-    p[i].style.color = "Black"
-}
+    //do the same for p elements
+    const p = document.getElementsByTagName("p");
+    for (let i = 0; i < p.length; i++){
+        p[i].innerText = "Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla";
+        p[i].style.color = "Black"
+    }
 
-const link = document.getElementsByTagName("link");
-for (let i = 0; i < link.length; i++){
-    link.href = "https://www.pexels.com/search/dog/";
-}
+    const link = document.getElementsByTagName("link");
+    for (let i = 0; i < link.length; i++){
+        link.href = "https://www.pexels.com/search/dog/";
+    }
 
-const div = document.getElementsByTagName("div");
-for (let i = 0; i < div.length; i++){
-    div[i].style.backgroundImage = "https://img.freepik.com/free-vector/pride-gradient-1_78370-282.jpg";
-}
+    const div = document.getElementsByTagName("div");
+    for (let i = 0; i < div.length; i++){
+        div[i].style.backgroundImage = "https://img.freepik.com/free-vector/pride-gradient-1_78370-282.jpg";
+    }
 
 }
 
