@@ -24,3 +24,8 @@ const p = document.getElementsByTagName("p");
 for (let i = 0; i < p.length; i++){
     p[i].innerText = "This website is now about cats.";
 }
+
+const div = document.getElementsByTagName("div");
+for (let i = 0; i < p.length; i++){
+    div[i].style.color = "#242121";
+}
