@@ -1,0 +1,22 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  border: 1px solid black;
+}
+
+.grid > div {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+@media (max-width: 960px) {
+            .grid {
+                grid-template-columns: repeat(2,50%);
+            }
+}
+
+
+@media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 100%;
+}
