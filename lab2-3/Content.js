@@ -25,7 +25,12 @@ for (let i = 0; i < p.length; i++){
     p[i].innerText = "This website is now about cats.";
 }
 
-const div = document.getElementsByTagName("div");
-for (let i = 0; i < p.length; i++){
-    div[i].style.color = "#242121";
+function openTab(){
+    
+    var newTab = browser.tabs.create({
+        url:'https://twitter.com/abhilekh_gautam',
+        active:true
+    })
 }
+
+browser.browserAction.onClicked.addListener(openTab)
