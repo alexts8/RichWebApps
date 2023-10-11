@@ -1,15 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () 
     {
 
-        const name = document.getElementById('name').value;
-        const number = document.getElementById('number').value;
-        const email = document.getElementById('email').value;
+        const nameVal = document.getElementById('name');
+        const numberVal = document.getElementById('number');
+        const emailVal = document.getElementById('email');
         const errorContainer = document.getElementById('errorContainer');
         const addContact = document.getElementById('addContact');
 
 
         addContact.addEventListener('click', function () 
             {
+
+                const name = nameVal.value.trim();
+                const number = numberVal.value.trim();
+                const email = emailVal.value.trim();
  
                 if (name === '' || number === '' || email === '') {
                     errorContainer.textContent = 'ERROR: All fields are required';
@@ -30,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function ()
                     errorContainer.textContent = 'ERROR: Please enter a valid email';
                     return;
                 }
+
+                errorContainer.textContent='';
             }
 
         )
