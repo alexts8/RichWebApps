@@ -101,11 +101,6 @@ else
         p[i].style.color = "Black"
     }
 
-    const link = document.getElementsByTagName("link");
-    for (let i = 0; i < link.length; i++){
-        link.href = "https://www.pexels.com/search/dog/";
-    }
-
     const div = document.getElementsByTagName("div");
     for (let i = 0; i < div.length; i++){
         div[i].style.backgroundImage = "https://img.freepik.com/free-vector/pride-gradient-1_78370-282.jpg";
