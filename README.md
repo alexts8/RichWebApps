@@ -1,7 +1,7 @@
 # Lab 1 - Important!
 
 Lab 1 part 2 only works from the DIST folder - the version in the src folder got messed up when exporting from codepen.
-I plan on not using codepen again in the future
+I plan on not using codepen again in the future for thiss module
 
 # Lab 1 - 3 
 
