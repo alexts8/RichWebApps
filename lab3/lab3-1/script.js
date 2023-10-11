@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function ()
         addContact.addEventListener('click', function () 
             {
  
-                if (name == '' || number == '' || email == '') {
+                if (name === '' || number === '' || email === '') {
                     errorContainer.textContent = 'ERROR: All fields are required';
                     return;
                 }
