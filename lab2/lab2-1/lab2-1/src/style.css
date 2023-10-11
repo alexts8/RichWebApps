@@ -4,7 +4,12 @@
   border: 1px solid black;
 }
 
-.grid > div {
+/*.grid > div  > .grid > div  {
+  border: 1px solid black;
+  padding: 20px;
+}*/
+
+.grid > div   {
   border: 1px solid black;
   padding: 20px;
 }
