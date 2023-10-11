@@ -1,2 +1,0 @@
-# RichWebApps
-CMPU4043 2023/24
