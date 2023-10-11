@@ -15,3 +15,9 @@ h1{
     margin: 10px;
     padding: 7px;
 }
+
+#errorContainer{
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+}
