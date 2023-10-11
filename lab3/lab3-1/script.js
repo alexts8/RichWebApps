@@ -1,44 +1,72 @@
 document.addEventListener('DOMContentLoaded', function () 
-    {
+{
 
-        const nameVal = document.getElementById('name');
-        const numberVal = document.getElementById('number');
-        const emailVal = document.getElementById('email');
-        const error = document.getElementById('error');
-        const addContact = document.getElementById('addContact');
+    const nameInput = document.getElementById('name');
+    const numberInput = document.getElementById('number');
+    const emailInput = document.getElementById('email');
+    const addContactBtn = document.getElementById('addContact');
+    const contactList = document.getElementById('contactList');
+    const errorDiv = document.getElementById('error');
 
+    const contacts = [];
 
-        addContact.addEventListener('click', function () 
-            {
+    addContactBtn.addEventListener('click', function () {
+        const name = nameInput.value.trim();
+        const number = numberInput.value.trim();
+        const email = emailInput.value.trim();
 
-                const name = nameVal.value.trim();
-                const number = numberVal.value.trim();
-                const email = emailVal.value.trim();
- 
-                if (name === '' || number === '' || email === '') {
-                    error.textContent = 'ERROR: All fields are required';
-                    return;
-                }
-                
-                if (!name.match(/^[A-Za-z ]{1,20}$/)) {
-                    error.textContent = 'ERROR: Name must contain only letters and spaces and be 1-20 characters long';
-                    return;
-                }
-        
-                if (!number.match(/^\d{10}$/)) {
-                    error.textContent = 'ERROR: Please enter a valid phone number';
-                    return;
-                }
-        
-                if (!email.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/) || email.length >= 40) {
-                    error.textContent = 'ERROR: Please enter a valid email';
-                    return;
-                }
+        if (name === '' || number === '' || email === '') {
+            errorDiv.textContent = 'ERROR: All fields are required';
+            errorDiv.style.display = 'block';
+            return;
+        }
 
-                error.textContent='';
-            }
+        if (!name.match(/^[A-Za-z ]{1,20}$/)) {
+            errorDiv.textContent = 'ERROR: Name should contain only letter and spaces and be 1-20 characters long';
+            errorDiv.style.display = 'block';
+            return;
+        }
 
-        )
+        if (!number.match(/^\d{10}$/)) {
+            errorDiv.textContent = 'ERROR: Number should contain exactly 10 digits';
+            errorDiv.style.display = 'block';
+            return;
+        }
 
-        clearFields();
-})
+        if (!email.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/) || email.length > 40) {
+            errorDiv.textContent = 'ERROR: Invalid email';
+            errorDiv.style.display = 'block';
+            return;
+        }
+
+        errorDiv.style.display = 'none';
+        contacts.push({ name, number, email });
+        updateContactList();
+        nameInput.value = '';
+        numberInput.value = '';
+        emailInput.value = '';
+
+    });
+
+    function updateContactList() {
+        contactList.innerHTML = '';
+        contacts.forEach((contact, index) => {
+            const row = document.createElement('tr');
+            row.style.backgroundColor = index % 2 === 0 ? '#f2f2f2' : '';
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = contact.name;
+            const numberCell = document.createElement('td');
+            numberCell.textContent = contact.number;
+            const emailCell = document.createElement('td');
+            emailCell.textContent = contact.email;
+
+            row.appendChild(nameCell);
+            row.appendChild(numberCell);
+            row.appendChild(emailCell);
+
+            contactList.appendChild(row);
+        });
+    }
+
+});

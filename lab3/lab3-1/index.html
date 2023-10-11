@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Lab3-1</title>
   <link rel="stylesheet" href="./style.css">
-
 </head>
 <body>
-
     <h1>Phone Directory</h1>
-
     <div class = "inputdiv">
-
-
-        <input type="text" placeholder = "Contact Name" class = "inputarea" id="name">
-
-        <input type="text" placeholder = "Mobile Number" class = "inputarea" id="number">
-
-        <input type="text" placeholder = "Email" class = "inputarea" id="email">
-
-        <button class = "inputarea" id = "addContact">Add Contact</button>
-
-
+        <input type="text" id="name" placeholder="Name" class = "inputarea" />
+        <input type="text" id="number" placeholder="Number" class = "inputarea" />
+        <input type="text" id="email" placeholder="Email" class = "inputarea" />
+        <button id="addContact">Add Contact</button>
     </div>
+    <div id="error" style="display: none;"></div>
 
-    <div id = "error">
-    </div>
-
-    <div id = "contactsContainer">
-    </div>
-
+    <table>
+        <thead>
+            <tr>
+                <th id="nameHeader">Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="contactList">
+        </tbody>
+    </table>
     <script  src="./script.js"></script>
-    
 </body>
 </html>
