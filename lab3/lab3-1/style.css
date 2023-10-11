@@ -1,3 +1,17 @@
 h1{
     text-align: center;
 }
+
+.inputdiv{
+    border: 2px blue solid;
+    background-color: lightblue;
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.inputarea{
+    margin: 10px;
+    padding: 7px;
+}
