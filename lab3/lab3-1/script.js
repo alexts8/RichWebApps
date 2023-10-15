@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function ()
     const contactList = document.getElementById('contactList');
     const errorDiv = document.getElementById('error');
     const searchInput = document.getElementById('search')
+    const noResultDiv = document.getElementById('noResult');
+    const nameHeader = document.getElementById('nameHeader');
 
     const contacts = [];
 
