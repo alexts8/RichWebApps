@@ -1,6 +1,6 @@
 const fetchData = (url) => fetch(url).then((response) => response.json());
 
-fetchData('http://jsonplaceholder.typicode.com/posts')
+/*fetchData('http://jsonplaceholder.typicode.com/posts')
     .then((data) => {
         const titles =  data
         .filter((post) => post.title.split(' ').length > 6)
@@ -9,17 +9,18 @@ fetchData('http://jsonplaceholder.typicode.com/posts')
 
     console.log(titles);
 
-    });
+});*/
 
 
 fetchData('http://jsonplaceholder.typicode.com/posts')
     .then((data) => {
         const bodies = data.map((post) => post.body);
 
-        const 
+        const wordMap = bodies
+        .flatMap((text) => text.split(/\s+/))
 
 
 
-    console.log(bodies);
+    console.log(wordMap);
 
-    });
+});
