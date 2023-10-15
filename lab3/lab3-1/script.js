@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function ()
     });
 
     function updateContactList() {
-        contactList.innerHTML = '';
+        contactList.innerHTML = ''; // Clear the table
         contacts.forEach((contact, index) => {
             const row = document.createElement('tr');
             row.style.backgroundColor = index % 2 === 0 ? '#f2f2f2' : '';
@@ -68,5 +68,45 @@ document.addEventListener('DOMContentLoaded', function ()
             contactList.appendChild(row);
         });
     }
+
+
+    nameHeader.addEventListener('click', function () {
+        contacts.reverse(); 
+        updateContactList();
+    });
+
+    searchInput.addEventListener('input', function () {
+        const search = searchInput.value.trim();
+        if (search === '') {
+            noResultDiv.style.display = 'none';
+            updateContactList();
+        } else {
+            const filteredContacts = contacts.filter(contact => contact.number.includes(search));
+            if (filteredContacts.length === 0) {
+                noResultDiv.style.display = 'block';
+            } else {
+                noResultDiv.style.display = 'none';
+                contactList.innerHTML = ''; 
+                filteredContacts.forEach((contact, index) => {
+                    const row = document.createElement('tr');
+                    row.style.backgroundColor = index % 2 === 0 ? '#f2f2f2' : '';
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = contact.name;
+                    const numberCell = document.createElement('td');
+                    numberCell.textContent = contact.number;
+                    const emailCell = document.createElement('td');
+                    emailCell.textContent = contact.email;
+
+                    row.appendChild(nameCell);
+                    row.appendChild(numberCell);
+                    row.appendChild(emailCell);
+
+                    contactList.appendChild(row);
+                });
+            }
+        }
+    });
+
 
 });
