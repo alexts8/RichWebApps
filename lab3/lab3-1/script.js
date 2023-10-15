@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function ()
     const addContactBtn = document.getElementById('addContact');
     const contactList = document.getElementById('contactList');
     const errorDiv = document.getElementById('error');
+    const searchInput = document.getElementById('search')
 
     const contacts = [];
 
