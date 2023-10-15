@@ -14,10 +14,10 @@ fetchData('http://jsonplaceholder.typicode.com/posts')
 
 fetchData('http://jsonplaceholder.typicode.com/posts')
     .then((data) => {
-        var words = data
-        .filter((post) => post.body.split(' '))
-        .map((post) => post.body);
+        const bodies = data.map((post) => post.body);
 
-    console.log(words);
+
+
+    console.log(bodies);
 
     });
