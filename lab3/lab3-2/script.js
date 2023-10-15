@@ -10,3 +10,14 @@ fetchData('http://jsonplaceholder.typicode.com/posts')
     console.log(titles);
 
     });
+
+
+fetchData('http://jsonplaceholder.typicode.com/posts')
+    .then((data) => {
+        var words = data
+        .filter((post) => post.body.split(' '))
+        .map((post) => post.body);
+
+    console.log(words);
+
+    });
