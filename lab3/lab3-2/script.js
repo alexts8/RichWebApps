@@ -18,6 +18,10 @@ fetchData('http://jsonplaceholder.typicode.com/posts')
 
         const wordMap = bodies
         .flatMap((text) => text.split(/\s+/))
+        .reduce((map, word) => {
+            map[word] = (map[word] || 0) + 1;
+            return map;
+        }, {});
 
 
 
