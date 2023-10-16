@@ -1,6 +1,6 @@
 const fetchData = (url) => fetch(url).then((response) => response.json());
 
-/*fetchData('http://jsonplaceholder.typicode.com/posts')
+fetchData('http://jsonplaceholder.typicode.com/posts')
     .then((data) => {
         const titles =  data
         .filter((post) => post.title.split(' ').length > 6)
@@ -9,7 +9,7 @@ const fetchData = (url) => fetch(url).then((response) => response.json());
 
     console.log(titles);
 
-});*/
+});
 
 
 fetchData('http://jsonplaceholder.typicode.com/posts')
