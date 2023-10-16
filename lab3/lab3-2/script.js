@@ -24,7 +24,6 @@ fetchData('http://jsonplaceholder.typicode.com/posts')
         }, {});
 
 
-
     console.log(wordMap);
 
 });
