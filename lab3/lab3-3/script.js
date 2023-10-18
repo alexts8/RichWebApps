@@ -18,10 +18,17 @@ async function getUserProfile() {
         if (response1.ok) {
             const userData = await response1.json();
             const avatarURL = userData.avatar_url;
-            const u_username = userData.login;         
+            const u_username = userData.login;   
+            const u_email = userData.email;   
+            const u_name = userData.name; 
+            const u_location = userData.location;    
 
             profilePicture.innerHTML = `<img src="${avatarURL}"width="150">`;
-            username.innerHTML = `<p>${u_username}</p>`;
+            username.innerHTML = `<p>Username: ${u_username}</p>`;
+            email.innerHTML = `<p>Email: ${u_email}</p>`
+            name.innerHTML = `<p>Name: ${u_name}</p>`
+            location.innerHTML = `<p>Location: ${u_location}</p>`
+
         } 
 
         const response2 = await fetch(`https://api.github.com/users/${input_username}/gists`);
@@ -33,6 +40,7 @@ async function getUserProfile() {
 
 
         } 
+
 }
 
 if (scrollableList.childElementCount > 5) {
