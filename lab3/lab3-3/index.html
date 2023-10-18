@@ -6,19 +6,19 @@
 </head>
 <body>
     <div class="search-bar-container">
-        <input type="text" class="search-bar" placeholder="Search...">
-        <button class="search-button">Search</button>
+        <input type="text" id ="search-bar" class="search-bar" placeholder="Search Github Username">
+        <button onclick = "getUserProfile()"class="search-button">Search</button>
     </div>
     <div class="container">
         <div class="profile-container">
-            <div class="profile-picture">
+            <div class="profile-picture" id = "profile-picture">
             </div>
             <div class="profile-info">
-                <div class="profile-info-row"></div>
-                <div class="profile-info-row"></div>
-                <div class="profile-info-row"></div>
-                <div class="profile-info-row"></div>
-                <div class="profile-info-row"></div>
+                <div id = 'name' class="profile-info-row"></div>
+                <div id = 'username' class="profile-info-row"></div>
+                <div id = 'email' class="profile-info-row"></div>
+                <div id = 'location' class="profile-info-row"></div>
+                <div id = 'gists' class="profile-info-row"></div>
             </div>
         </div>
         <div class="scrollable-list">
