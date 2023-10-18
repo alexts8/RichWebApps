@@ -1,7 +1,3 @@
-const scrollableList = document.querySelector('.scrollable-list');
-const listItems = scrollableList.querySelectorAll('.list-item');
-
-
 async function getUserProfile() {
 
     const input_username = document.getElementById("search-bar").value;
@@ -10,7 +6,9 @@ async function getUserProfile() {
     const username = document.getElementById("username");  
     const email = document.getElementById("email");  
     const location = document.getElementById("location");  
-    const gists = document.getElementById("gists");  
+    const gists = document.getElementById("gists"); 
+    const repoList = document.querySelector('.repo-list');
+    repoList.innerHTML = ''; 
 
 
 
@@ -28,7 +26,6 @@ async function getUserProfile() {
             email.innerHTML = `<p>Email: ${u_email}</p>`
             name.innerHTML = `<p>Name: ${u_name}</p>`
             location.innerHTML = `<p>Location: ${u_location}</p>`
-
         } 
 
         const response2 = await fetch(`https://api.github.com/users/${input_username}/gists`);
@@ -37,12 +34,23 @@ async function getUserProfile() {
             const u_gists = gistData.length;
 
             gists.innerHTML = `<p>Number of Gists: ${u_gists}</p>`
-
-
         } 
 
+        const response3 = await fetch(`https://api.github.com/users/${input_username}/repos`);
+        if (response3.ok) {
+            const repoData = await response3.json();
+
+            repoData.forEach((repo) => {
+                const repoDiv = document.createElement('div');
+                repoDiv.innerHTML = `<strong>${repo.name}</strong><br>${repo.description}`;
+                repoList.appendChild(repoDiv);
+            });
+
+            if (repoData.length > 5) {
+                repoList.style.overflowY = 'scroll';
+            }
+            
+        }
+
 }
 
-if (scrollableList.childElementCount > 5) {
-    scrollableList.style.overflowY = "scroll";
-}
