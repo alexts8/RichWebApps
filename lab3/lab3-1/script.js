@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function ()
     });
 
     function updateContactList() {
-        contactList.innerHTML = ''; // Clear the table
+        contactList.innerHTML = ''; 
         contacts.forEach((contact, index) => {
             const row = document.createElement('tr');
             row.style.backgroundColor = index % 2 === 0 ? '#f2f2f2' : '';
