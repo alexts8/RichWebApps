@@ -15,12 +15,9 @@ function createNote() {
 
             const deleteButton = document.createElement('button');
 
-            const clickObservable = fromEvent(deleteButton, 'click');
+            Rx.Observable.fromEvent(deleteButton, 'click')
+            .subscribe(() => notesContainer.removeChild(note));
 
-            const subscription = clickObservable.subscribe(() => {
-                notesContainer.removeChild(note);
-            });
-        
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.onclick = function() {
