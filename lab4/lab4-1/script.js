@@ -1,54 +1,47 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const createNoteButton = document.getElementById('createNoteBtn');
+function createNote() {
+            const noteHeader = document.getElementById('noteHeader').value;
+            const noteBody = document.getElementById('noteBody').value;
+            const noteColor = document.getElementById('noteColor').value;
 
-    const createNoteClick$ = Rx.fromEvent(createNoteButton, 'click');
+            const note = document.createElement('div');
+            note.className = 'note';
+            note.style.backgroundColor = noteColor;
 
-    createNoteClick$.subscribe(() => {
-        createNote();
-    });
+            const header = document.createElement('h3');
+            header.textContent = noteHeader;
+            
+            const body = document.createElement('p');
+            body.textContent = noteBody;
 
-    function createNote() {
-                const noteHeader = document.getElementById('noteHeader').value;
-                const noteBody = document.getElementById('noteBody').value;
-                const noteColor = document.getElementById('noteColor').value;
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() {
+                notesContainer.removeChild(note);
+            };
 
-                const note = document.createElement('div');
-                note.className = 'note';
-                note.style.backgroundColor = noteColor;
 
-                const header = document.createElement('h3');
-                header.textContent = noteHeader;
-                
-                const body = document.createElement('p');
-                body.textContent = noteBody;
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.onclick = function() {
+                const newHeader = prompt('Edit Note Header:', noteHeader);
+                const newBody = prompt('Edit Note Body:', noteBody);
+                if (newHeader !== null && newBody !== null) {
+                    header.textContent = newHeader;
+                    body.textContent = newBody;
+                }
+            };
 
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = function() {
-                    notesContainer.removeChild(note);
-                };
+            note.appendChild(header);
+            note.appendChild(body);
+            note.appendChild(deleteButton);
+            note.appendChild(editButton);
 
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
-                editButton.onclick = function() {
-                    const newHeader = prompt('Edit Note Header:', noteHeader);
-                    const newBody = prompt('Edit Note Body:', noteBody);
-                    if (newHeader !== null && newBody !== null) {
-                        header.textContent = newHeader;
-                        body.textContent = newBody;
-                    }
-                };
+            const notesContainer = document.getElementById('notesContainer');
+            notesContainer.appendChild(note);
 
-                note.appendChild(header);
-                note.appendChild(body);
-                note.appendChild(deleteButton);
-                note.appendChild(editButton);
+            document.getElementById('noteHeader').value = '';
+            document.getElementById('noteBody').value = '';
 
-                const notesContainer = document.getElementById('notesContainer');
-                notesContainer.appendChild(note);
-
-                document.getElementById('noteHeader').value = '';
-                document.getElementById('noteBody').value = '';
-
-            }
-    });
+        }
+const createNoteButton = document.getElementById('createNoteButton'); 
+createNoteButton.addEventListener('click', createNote);
