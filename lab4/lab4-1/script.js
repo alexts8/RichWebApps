@@ -1,3 +1,5 @@
+import { fromEvent } from 'rxjs';
+
 function createNote() {
             const noteHeader = document.getElementById('noteHeader').value;
             const noteBody = document.getElementById('noteBody').value;
@@ -14,11 +16,13 @@ function createNote() {
             body.textContent = noteBody;
 
             const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick = function() {
-                notesContainer.removeChild(note);
-            };
 
+            const clickObservable = fromEvent(deleteButton, 'click');
+
+            const subscription = clickObservable.subscribe(() => {
+                notesContainer.removeChild(note);
+            });
+        
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.onclick = function() {
@@ -40,4 +44,7 @@ function createNote() {
 
             document.getElementById('noteHeader').value = '';
             document.getElementById('noteBody').value = '';
+
         }
+const createNoteButton = document.getElementById('createNoteButton'); 
+createNoteButton.addEventListener('click', createNote);
