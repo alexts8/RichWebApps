@@ -1,5 +1,3 @@
-import { fromEvent } from 'rxjs';
-
 function createNote() {
             const noteHeader = document.getElementById('noteHeader').value;
             const noteBody = document.getElementById('noteBody').value;
