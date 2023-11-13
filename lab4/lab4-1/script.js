@@ -13,21 +13,25 @@ function createNote() {
             const body = document.createElement('p');
             body.textContent = noteBody;
 
+            /*delete button observable stream*/
             const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            const { Observable, fromEvent } = rxjs;
+            const click_delete = fromEvent(deleteButton, 'click');
+            click_delete.subscribe(() => notesContainer.removeChild(note));
 
-            Rx.Observable.fromEvent(deleteButton, 'click')
-            .subscribe(() => notesContainer.removeChild(note));
-
+            /*edit button observable stream*/
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
-            editButton.onclick = function() {
+            const click_edit = fromEvent(editButton, 'click');
+            click_edit.subscribe(function() {
                 const newHeader = prompt('Edit Note Header:', noteHeader);
                 const newBody = prompt('Edit Note Body:', noteBody);
                 if (newHeader !== null && newBody !== null) {
                     header.textContent = newHeader;
                     body.textContent = newBody;
                 }
-            };
+            });
 
             note.appendChild(header);
             note.appendChild(body);
