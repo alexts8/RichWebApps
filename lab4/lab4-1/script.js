@@ -1,3 +1,8 @@
+const createNoteButton = document.getElementById('createNoteButton'); 
+const { Observable, fromEvent } = rxjs;
+const click_create = fromEvent(createNoteButton, 'click');
+click_create.subscribe(() => createNote());
+
 function createNote() {
             const noteHeader = document.getElementById('noteHeader').value;
             const noteBody = document.getElementById('noteBody').value;
@@ -45,5 +50,4 @@ function createNote() {
             document.getElementById('noteBody').value = '';
 
         }
-const createNoteButton = document.getElementById('createNoteButton'); 
-createNoteButton.addEventListener('click', createNote);
+
