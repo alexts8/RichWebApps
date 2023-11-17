@@ -1,7 +1,18 @@
-#inputbox {
-    margin: auto;
-    display: block;
-    border: 1px solid rgb(35, 32, 32);
+body {
     text-align: center;
-    size: 50;
+    padding: 20px;
+  }
+
+.inputbox{
+    margin:10px;
+    padding:10px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+}
+
+button{
+    padding:5px;
+    margin:5px;
+    background-color: antiquewhite;
+    border: 2px solid black;
 }
