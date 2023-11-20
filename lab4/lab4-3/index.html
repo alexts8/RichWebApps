@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Lab4-1</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<h1>Note Taker</h1>
+
+        <label for="noteHeader">Header:</label>
+        <input type="text" id="noteHeader">
+
+        <br>
+
+        <label for="noteBody">Body:</label>
+        <textarea id="noteBody"></textarea>
+
+        <br>
+
+        <label for="noteColor">Note Color:</label>
+        <select id="noteColor">
+            <option value="#ffcccc">Red</option>
+            <option value="#ccffcc">Green</option>
+            <option value="#ccccff">Blue</option>
+        </select>
+        <br>
+
+        <button id = "createNoteButton">Create Note</button>
+    </div>
+    
+    <div id="notesContainer"></div>
+  <script src="node_modules/rxjs/dist/bundles/rxjs.umd.min.js"></script>
+  <script src="./script.js"></script>
+
+</body>
+</html>
