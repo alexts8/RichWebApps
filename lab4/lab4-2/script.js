@@ -28,9 +28,6 @@ function start() {
 
   countdown$.subscribe(
     () => {},
-    null,
-    () => {
-        timer.textContent = 'Time Over';
-    }
+    null
   );
 }
