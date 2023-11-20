@@ -2,9 +2,9 @@ const { Observable, fromEvent } = rxjs;
 
 class Note {
     constructor() {
-        this.parent = null;
+        this.parentNote = null;
         this.relatedNotes = [];
-        this.subscriptions = [];
+        this.noteElement = null; 
     }
 
     createNote() {
@@ -15,6 +15,7 @@ class Note {
         const note = document.createElement('div');
         note.className = 'note';
         note.style.backgroundColor = noteColor;
+        this.noteElement = note;
 
         const header = document.createElement('h3');
         header.textContent = noteHeader;
@@ -26,13 +27,13 @@ class Note {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         const click_delete = fromEvent(deleteButton, 'click');
-        click_delete.subscribe(() => this.deleteNote(note));
+        click_delete.subscribe(() => this.deleteAll());
 
-        /*adding related note button*/
+        /*adding related note button and stream*/
         const relatedNote = document.createElement('button');
         relatedNote.textContent = 'Add Related Note';
         const click_related = fromEvent(relatedNote, 'click');
-        click_related.subscribe(() => this.addRelatedNote());
+        click_related.subscribe(() => this.addRelatedNote(this));
 
         /*edit button observable stream*/
         const editButton = document.createElement('button');
@@ -45,25 +46,34 @@ class Note {
         note.appendChild(deleteButton);
         note.appendChild(editButton);
         note.appendChild(relatedNote);
+        
 
         const notesContainer = document.getElementById('notesContainer');
         notesContainer.appendChild(note);
 
         document.getElementById('noteHeader').value = '';
         document.getElementById('noteBody').value = '';
+
     }
 
-    deleteNote(noteElement) {
-        this.relatedNotes.forEach(relatedNote => relatedNote.deleteNote());
+    deleteAll() {
+
         const notesContainer = document.getElementById('notesContainer');
-        notesContainer.removeChild(noteElement);
+        notesContainer.removeChild(this.noteElement);
+
+        for (const relatedNote of this.relatedNotes) {
+            console.log(relatedNote)
+            relatedNote.deleteAll();
+        }
+
     }
 
-    addRelatedNote() {
-        const newNote = new Note();
-        newNote.parent = this;
-        this.relatedNotes.push(newNote);
-        newNote.createNote();
+
+    addRelatedNote(parentNote) {
+        const relatedNote = new Note();
+        relatedNote.parentNote = parentNote;
+        parentNote.relatedNotes.push(relatedNote);
+        relatedNote.createNote();
     }
 
     editNoteHeaderAndBody(headerElement, bodyElement) {
@@ -74,10 +84,14 @@ class Note {
             bodyElement.textContent = newBody;
         }
     }
+    
 }
+
+
 
 const createNoteButton = document.getElementById('createNoteButton');
 const click_create = fromEvent(createNoteButton, 'click');
+
 
 const notesInstance = new Note();
 
