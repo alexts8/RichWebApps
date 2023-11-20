@@ -3,6 +3,8 @@ const { Observable, fromEvent } = rxjs;
 class Note {
     constructor() {
         this.parent = null;
+        this.relatedNotes = [];
+        this.subscriptions = [];
     }
 
     createNote() {
@@ -52,6 +54,7 @@ class Note {
     }
 
     deleteNote(noteElement) {
+        this.relatedNotes.forEach(relatedNote => relatedNote.deleteNote());
         const notesContainer = document.getElementById('notesContainer');
         notesContainer.removeChild(noteElement);
     }
@@ -59,6 +62,7 @@ class Note {
     addRelatedNote() {
         const newNote = new Note();
         newNote.parent = this;
+        this.relatedNotes.push(newNote);
         newNote.createNote();
     }
 
