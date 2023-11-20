@@ -25,6 +25,14 @@ function createNote() {
             const click_delete = fromEvent(deleteButton, 'click');
             click_delete.subscribe(() => notesContainer.removeChild(note));
 
+            /*adding related note button*/
+            const relatedNote = document.createElement('button');
+            relatedNote.textContent = 'Add Related Note';
+            const click_related = fromEvent(relatedNote, 'click');
+            click_related.subscribe(function() {
+
+            });
+
             /*edit button observable stream*/
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
@@ -42,6 +50,7 @@ function createNote() {
             note.appendChild(body);
             note.appendChild(deleteButton);
             note.appendChild(editButton);
+            note.appendChild(relatedNote)
 
             const notesContainer = document.getElementById('notesContainer');
             notesContainer.appendChild(note);
