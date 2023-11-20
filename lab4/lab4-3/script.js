@@ -58,5 +58,5 @@ function createNote() {
             document.getElementById('noteHeader').value = '';
             document.getElementById('noteBody').value = '';
 
-        }
+}
 
