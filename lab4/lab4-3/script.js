@@ -57,6 +57,9 @@ class Note {
     }
 
     addRelatedNote() {
+        const newNote = new Note();
+        newNote.parent = this;
+        newNote.createNote();
     }
 
     editNoteHeaderAndBody(headerElement, bodyElement) {
