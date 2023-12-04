@@ -4,23 +4,41 @@ const NoteWithClickableWords = ({ text, onWordClick }) => {
   const words = text.split(' ');
 
   const handleWordClick = (word) => {
+
+    // make an api call for the word, to the dictionary api
     const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
 
-  fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    console.log("success!");
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-      onWordClick(word);
+    console.log('Before API call');
+
+    fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+
+    .then(data => {
+      console.log(data);
+      const entry = data[0];
+
+      // dig the definition out of the json response
+      const def = entry.meanings[0]?.definitions[0]?.definition;
+
+      if (def) {
+      // make sure it came through correctly
+      console.log(def)
+      }
+
+      else {
+        return `Error fetching definition for ${word}`;
+      }
+    })
+
+    .catch(error => {
+      console.error('Error:', error);
+    });
+      onWordClick(def);
   };
 
 
