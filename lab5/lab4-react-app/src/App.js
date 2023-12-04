@@ -60,10 +60,12 @@ const NoteApp = () => {
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
+          alert("Definition couldn't be found!"); 
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
+      
       .then(data => {
         console.log(data);
         const entry = data[0];
