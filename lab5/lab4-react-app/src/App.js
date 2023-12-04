@@ -1,63 +1,5 @@
 import React, { useState } from 'react';
 
-const NoteWithClickableWords = ({ text, onWordClick }) => {
-  const words = text.split(' ');
-
-  const handleWordClick = (word) => {
-
-    // make an api call for the word, to the dictionary api
-    const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
-
-    console.log('Before API call');
-
-    fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-
-    .then(data => {
-      console.log(data);
-      const entry = data[0];
-
-      // dig the definition out of the json response
-      const def = entry.meanings[0]?.definitions[0]?.definition;
-
-      if (def) {
-      // make sure it came through correctly
-      console.log(def)
-      }
-
-      else {
-        return `Error fetching definition for ${word}`;
-      }
-    })
-
-    .catch(error => {
-      console.error('Error:', error);
-    });
-      onWordClick(def);
-  };
-
-
-
-  return (
-    <div>
-      {words.map((word, index) => (
-        <span
-          key={index}
-          style={{ cursor: 'pointer', marginRight: '5px' }}
-          onClick={() => handleWordClick(word)}
-        >
-          {word}
-        </span>
-      ))}
-    </div>
-  );
-};
-
 const NoteApp = () => {
   const [noteHeader, setNoteHeader] = useState('');
   const [noteBody, setNoteBody] = useState('');
@@ -110,10 +52,34 @@ const NoteApp = () => {
     setNotes(editedNotes);
   };
 
-  const getDefinition = (word) => {
-    // Call your dictionary API to get the definition of the word
-    console.log(`Getting definition for: ${word}`);
-    // Make API call and handle the response
+  const handleWordClick = (word) => {
+    const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+
+    console.log('Before API call');
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        const entry = data[0];
+
+        // retrieve the definition from the json api response
+        const def = entry.meanings[0]?.definitions[0]?.definition;
+
+        // check we got the right definition
+        console.log(def);
+
+        // display the definition of the selected word
+        alert(`Definition for ${word}: ${def}`);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   return (
@@ -161,10 +127,15 @@ const NoteApp = () => {
             className="note"
             style={{ backgroundColor: note.color }}
           >
-            <NoteWithClickableWords
-              text={`${note.header} ${note.body}`}
-              onWordClick={getDefinition}
-            />
+            <div>
+              <span
+                style={{ cursor: 'pointer', marginRight: '5px' }}
+                onClick={() => handleWordClick(note.header)}
+              >
+                {note.header}
+              </span>
+              {note.body}
+            </div>
             <button onClick={() => deleteNote(note.id)}>Delete</button>
             <button onClick={() => editNote(note.id)}>Edit</button>
           </div>
