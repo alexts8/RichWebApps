@@ -52,11 +52,19 @@ const NoteApp = () => {
     setNotes(editedNotes);
   };
 
+  //function to handle words being clicked
   const handleWordClick = (word) => {
+    // Encode the word properly
+    console.log(word)
+
+    // define the url for the dictionary api, passing the selected word
     const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
 
+    // checking the api url 
     console.log('Before API call');
+    console.log(apiUrl);
 
+    // make the api request
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
@@ -65,7 +73,6 @@ const NoteApp = () => {
         }
         return response.json();
       })
-      
       .then(data => {
         console.log(data);
         const entry = data[0];
@@ -130,13 +137,26 @@ const NoteApp = () => {
             style={{ backgroundColor: note.color }}
           >
             <div>
-              <span
-                style={{ cursor: 'pointer', marginRight: '5px' }}
-                onClick={() => handleWordClick(note.header)}
-              >
-                {note.header}
-              </span>
-              {note.body}
+              {note.header.split(' ').map((word, index) => (
+                <span
+                  key={index}
+                  style={{ cursor: 'pointer', marginRight: '5px', fontWeight: 'bold' }}
+                  onClick={() => handleWordClick(word)}
+                >
+                  {word}
+                </span>
+              ))}
+            </div>
+            <div>
+              {note.body.split(' ').map((word, index) => (
+                <span
+                  key={index}
+                  style={{ cursor: 'pointer', marginRight: '5px' }}
+                  onClick={() => handleWordClick(word)}
+                >
+                  {word}
+                </span>
+              ))}
             </div>
             <button onClick={() => deleteNote(note.id)}>Delete</button>
             <button onClick={() => editNote(note.id)}>Edit</button>
