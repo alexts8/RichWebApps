@@ -6,7 +6,7 @@ const NoteApp = () => {
   const [noteColor, setNoteColor] = useState('#ffcccc');
   const [notes, setNotes] = useState([]);
   const [search, setSearch] = useState('');
-
+  
 
   const handleNoteHeaderChange = (event) => {
     setNoteHeader(event.target.value);
@@ -65,6 +65,10 @@ const NoteApp = () => {
     setNotes(filteredNotes);
   };
 
+  const clearSearch = () => {
+    setSearch('');
+  };
+
   //function to handle words being clicked
   const handleWordClick = (word) => {
     // Encode the word properly
@@ -115,6 +119,7 @@ const NoteApp = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <button onClick={searchNotes}>Search</button>
+      <button onClick={clearSearch}>Clear Search</button>
 
       <br></br>
       <br></br>
