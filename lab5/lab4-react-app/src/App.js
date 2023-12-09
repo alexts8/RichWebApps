@@ -5,6 +5,8 @@ const NoteApp = () => {
   const [noteBody, setNoteBody] = useState('');
   const [noteColor, setNoteColor] = useState('#ffcccc');
   const [notes, setNotes] = useState([]);
+  const [search, setSearch] = useState('');
+
 
   const handleNoteHeaderChange = (event) => {
     setNoteHeader(event.target.value);
@@ -24,6 +26,7 @@ const NoteApp = () => {
       header: noteHeader,
       body: noteBody,
       color: noteColor,
+      timestamp: new Date().toLocaleString(),
     };
 
     setNotes((prevNotes) => [...prevNotes, newNote]);
@@ -50,6 +53,16 @@ const NoteApp = () => {
     });
 
     setNotes(editedNotes);
+  };
+
+  // new function that takes a searchterm and returns the notes that contain this term
+  const searchNotes = () => {
+    const filteredNotes = notes.filter(
+      (note) =>
+        note.header.toLowerCase().includes(search.toLowerCase()) ||
+        note.body.toLowerCase().includes(search.toLowerCase())
+    );
+    setNotes(filteredNotes);
   };
 
   //function to handle words being clicked
@@ -94,6 +107,17 @@ const NoteApp = () => {
   return (
     <div>
       <h1>Note Taker</h1>
+
+      <input
+        type="text"
+        placeholder="Search notes..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <button onClick={searchNotes}>Search</button>
+
+      <br></br>
+      <br></br>
 
       <label htmlFor="noteHeader">Header:</label>
       <input
@@ -157,6 +181,9 @@ const NoteApp = () => {
                   {word}
                 </span>
               ))}
+            </div>
+            <div>
+              <small>Created: {note.timestamp}</small>
             </div>
             <button onClick={() => deleteNote(note.id)}>Delete</button>
             <button onClick={() => editNote(note.id)}>Edit</button>
